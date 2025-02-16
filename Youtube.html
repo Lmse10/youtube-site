@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>YouTube Video with Sound</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: black;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+    #player {
+      width: 100%;
+      height: 80%;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 20px;
+      color: white;
+      background-color: #ff0000;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #cc0000;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- YouTube Video Player -->
+  <div id="player"></div>
+  
+  <!-- Click to Play Button -->
+  <button onclick="playWithSound()">▶ Click to Play with Sound</button>
+
+  <!-- YouTube IFrame API Script -->
+  <script>
+    var player;
+
+    // Load YouTube API
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    // Create YouTube Player
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('player', {
+        videoId: 'IxX_QHay02M', // YouTube Video ID
+        playerVars: {
+          autoplay: 0,       // Start paused (browser policy)
+          controls: 0,       // Hide controls
+          loop: 1,           // Loop video
+          playlist: 'IxX_QHay02M',
+          modestbranding: 1, // Minimal branding
+          rel: 0,            // No related videos
+          showinfo: 0,
+          disablekb: 1,
+          fs: 0,
+          playsinline: 1
+        }
+      });
+    }
+
+    // Play Video with Sound on Button Click
+    function playWithSound() {
+      player.unMute();       // Unmute video
+      player.playVideo();    // Play video
+    }
+  </script>
+
+</body>
+</html>
+
+
